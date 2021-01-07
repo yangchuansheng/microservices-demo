@@ -1,12 +1,12 @@
 #=================================================
 # https://github.com/yangchuansheng/docker-image
-# Description: Build and push frontend Docker image
+# Description: Build and push frontend-v1 Docker image
 # Lisence: MIT
 # Author: Ryan
 # Blog: https://fuckcloudnative.io
 #=================================================
 
-name: Build and push frontend Docker image
+name: Build and push frontend-v1 Docker image
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -14,12 +14,12 @@ on:
   push:
     branches: [ main ]
     paths: 
-      - 'src/frontend/*'
-      - '.github/workflows/frontend.yml'
+      - 'src/frontend-v1/*'
+      - '.github/workflows/frontend-v1.yml'
   pull_request:
     branches: [ main ]
     paths: 
-      - 'src/frontend/*'
+      - 'src/frontend-v1/*'
   #watch:
     #types: started
 
@@ -51,17 +51,17 @@ jobs:
     - name: Build and push Docker images to docker.io and ghcr.io
       uses: docker/build-push-action@v2
       with:
-        file: 'src/frontend/Dockerfile'
+        file: 'src/frontend-v1/Dockerfile'
         platforms: linux/amd64
-        context: src/frontend
+        context: src/frontend-v1
         push: true
         tags: |
-          yangchuansheng/frontend:latest
+          yangchuansheng/frontend-v1:latest
 
     #- name: Update repo description
       #uses: peter-evans/dockerhub-description@v2
       #env:
         #DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         #DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        #DOCKERHUB_REPOSITORY: yangchuansheng/frontend
-        #README_FILEPATH: frontend/readme.md
+        #DOCKERHUB_REPOSITORY: yangchuansheng/frontend-v1
+        #README_FILEPATH: frontend-v1/readme.md
