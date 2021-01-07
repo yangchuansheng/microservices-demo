@@ -56,7 +56,7 @@ jobs:
         context: src/frontend-v1
         push: true
         tags: |
-          yangchuansheng/frontend-v1:latest
+          yangchuansheng/frontend:v1
 
     #- name: Update repo description
       #uses: peter-evans/dockerhub-description@v2
